@@ -14,6 +14,5 @@ import java.util.List;
  * @since 2018-11-28
  */
 public interface IUserService extends IService<User> {
-    List<User> findUserByName(String userName);
-    User findUserById(Integer userId);
+    User findOneUserById(int userId);
 }
