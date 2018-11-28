@@ -15,4 +15,8 @@ import java.util.List;
  */
 public interface IUserService extends IService<User> {
     User findOneUserById(int userId);
+
+    boolean updateUser(User user);
+
+    boolean addUser(User user);
 }

@@ -23,9 +23,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private UserMapper userMapper;
 
     @Override
-    @Cacheable(key = "#userId",cacheNames = "userId")
+    @Cacheable(key = "#userId",cacheNames = "user")
     public User findOneUserById(int userId) {
         User user = userMapper.selectOne(new QueryWrapper<User>().eq("id", userId));
         return user;
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        int result = userMapper.update(user, new QueryWrapper<User>().eq("id", user.getId()));
+        if (result==1){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        int result = userMapper.insert(user);
+        if (result==1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

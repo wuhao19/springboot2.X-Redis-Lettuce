@@ -33,6 +33,21 @@ spring:
     port: 6379
   # Redis服务器连接密码（默认为空）
     password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1s
+        max-idle: 8
+        min-idle: 0
+  cache:
+    redis:
+      time-to-live: 20s #缓存超时时间ms
+      cache-null-values: false #是否缓存空值
+    type: redis
 
 mybatis:
   mapper-locations: /mapper/**.xml
+
+myConfig:
+  redis:
+    timeTtl: 180
