@@ -28,7 +28,7 @@ spring:
   redis:
     database: 0
   # Redis服务器地址
-    host: 192.168.31.52
+    host: 192.168.31.53
   # Redis服务器连接端口
     port: 6379
   # Redis服务器连接密码（默认为空）
@@ -41,7 +41,7 @@ spring:
         min-idle: 0
   cache:
     redis:
-      time-to-live: 20s #缓存超时时间ms
+      time-to-live: 180s #缓存超时时间ms
       cache-null-values: false #是否缓存空值
     type: redis
 
@@ -50,4 +50,6 @@ mybatis:
 
 myConfig:
   redis:
-    timeTtl: 180
+    timeTtl: 1800
+server:
+  port: 8888

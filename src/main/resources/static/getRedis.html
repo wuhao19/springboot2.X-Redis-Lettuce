@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getRedis</title>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+输入需要的redis名称：<input name="redisName" id="redisName" type="text" /><br>
+<input type="button" id="setRedis" value="获取redis" onclick="getRedis()">
+<input type="button" id="tomcat1" value="去设置redis" onclick="$(location).attr('href','setRedis.html')">
+<div id="result">
+    <div id="success">
+    </div>
+    <div id="error">
+    </div>
+</div>
+
+</body>
+<script>
+    function getRedis(){
+        $.ajax({
+            url: '/redis/getRedis',
+            type: 'POST', //GET
+            async: true,    //或false,是否异步
+            data: {
+                redisName: $("#redisName").val()
+            },
+            timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function (xhr) {
+            },
+            success: function (data, textStatus, jqXHR) {
+                if (data.code==0){
+                   showRedis(data.map.redis);
+                }else {
+                    showError(data.message);
+                }
+            },
+            error: function (xhr, textStatus, data) {
+            },
+            complete: function () {
+            }
+        })
+    }
+    function showRedis(redis) {
+        $("#success").html("<p>"+redis+"</p> ");
+    }
+    function showError(message) {
+        $("#error").html("<p>"+message+"</p> ");
+    }
+</script>
+</html>

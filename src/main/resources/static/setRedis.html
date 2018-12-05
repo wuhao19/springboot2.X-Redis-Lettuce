@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setRedis</title>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+        输入设置的redis名称：<input name="redisName" id="redisName" type="text" /><br>
+        输入设置的redis内容：<input name="redisCon" id="redisCon" type="text"/><br>
+        <input type="button" id="setRedis" value="设置redis" onclick="setRedis()">
+        <input type="button" id="tomcat1" value="去查看redis" onclick="$(location).attr('href','getRedis.html')">
+</body>
+<script>
+    function setRedis(){
+        $.ajax({
+            url: '/redis/setRedis',
+            type: 'POST', //GET
+            async: true,    //或false,是否异步
+            data: {
+                redisName: $("#redisName").val(),
+                redisCon:  $("#redisCon").val()
+            },
+            timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function (xhr) {
+            },
+            success: function (data, textStatus, jqXHR) {
+                if (data.code==0){
+                    alert("设置redis成功");
+                }else {
+                    alert(data.message);
+                }
+            },
+            error: function (xhr, textStatus, data) {
+            },
+            complete: function () {
+            }
+        })
+    }
+</script>
+</html>

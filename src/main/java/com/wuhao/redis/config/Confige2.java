@@ -15,6 +15,7 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
@@ -24,6 +25,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Configuration
+@EnableRedisHttpSession
 public class Confige2 extends CachingConfigurerSupport {
     @Value("${myConfig.redis.timeTtl}")
     private int timeTtl;
